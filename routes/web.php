@@ -22,9 +22,17 @@ use Illuminate\Support\Facades\Auth;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+// Route::middleware('auth')->group(function () {
+//     Route::get('/', [IndexController::class, 'index'])->name('index');
+// });
+Route::get('/', function () {
+    return view('admin.login');
+});
+
 
 Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/penilaian', [IndexController::class, 'index'])->name('index');
     // route group kriteria 
     Route::prefix('kriteria')->group(function () {
         Route::get('/', [KriteriaController::class, 'index'])->name('kriteria');
@@ -66,13 +74,13 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     });
 
     // route group user
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index'])->name('user');
-        // Route::get('/create', [UserController::class, 'create'])->name('user.create');
-        // Route::post('/store', [UserController::class, 'store'])->name('user.store');
-        // Route::get('/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
-        // Route::post('/update/{id}', [UserController::class, 'update'])->name('user.update');
-        // Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('user.delete');
+    Route::prefix('users')->group(function () {
+        Route::get('/', [UserController::class, 'index'])->name('users');
+        // Route::get('/create', [UserController::class, 'create'])->name('users.create');
+        Route::post('/store', [UserController::class, 'store'])->name('users.store');
+        Route::get('/{id}/edit', [UserController::class, 'edit'])->name('users.edit');
+        // Route::post('/update/{id}', [UserController::class, 'update'])->name('users.update');
+        Route::get('/delete/{id}', [UserController::class, 'destroy'])->name('users.delete');
     });
 
     
@@ -84,7 +92,6 @@ Route::prefix('admin')->middleware('auth')->group(function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 
 });
-Route::get('/', [IndexController::class, 'index'])->name('index');
 Route::get('/auth', [AuthController::class, 'index'])->name('login');
 Route::post('/auth/login', [AuthController::class, 'authLogin'])->name('authLogin');
 Route::post('/store', [RespondenController::class, 'store'])->name('storeResponden');

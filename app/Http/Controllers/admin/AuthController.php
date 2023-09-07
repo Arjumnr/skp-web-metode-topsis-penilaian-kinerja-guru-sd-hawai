@@ -23,9 +23,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('dashboard');
         } else {
-            return response()->json([
-                'message' => 'Username atau password salah'
-            ]);
+            return redirect()->route('login');
         }
     }
 

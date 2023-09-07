@@ -74,7 +74,11 @@
 
                 <div class="col-xl">
                     <div class="card mb-4">
-                        <div class="card-header d-flex justify-content-between align-items-center">
+                        <div class="card-header d-flex justify-content-center align-items-center">
+                            <div class="app-brand d-flex justify-content-center align-items-center">
+                                <img src="{{ asset('sneat-1.0.0/assets/img/logo_jayapura.png') }}" width="10%"
+                                    alt="Brand Logo" class="img-fluid" />
+                            </div>
                         </div>
                         <div class="col-md-12 ">
                             <h4 class="d-flex justify-content-center">System Penilaian Kinerja Guru SD Inpres Hawai</h4>
@@ -149,7 +153,10 @@
                                     <button type="submit" class="btn btn-primary">Simpan</button>
                                 </div>
                             </form>
-
+                            <div class="card-footer d-flex justify-content-center">
+                                <a href="{{ route('dashboard') }}"><button type="button"
+                                        class="btn btn-danger">Dashboard</button></a>
+                            </div>
                         </div>
 
                     </div>

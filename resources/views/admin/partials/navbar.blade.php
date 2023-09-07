@@ -14,7 +14,7 @@
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
-            <h4>Admin</h4>
+            <h4>{{ auth()->user()->name }}</h4>
             <!-- Place this tag where you want the button to render. -->
             {{-- <li class="nav-item lh-1 me-3">
                 <a class="github-button" href="https://github.com/themeselection/sneat-html-admin-template-free"

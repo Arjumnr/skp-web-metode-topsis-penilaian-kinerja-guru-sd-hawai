@@ -14,4 +14,6 @@ class DashboardController extends Controller
         $jumlahKriteria = \App\Models\ModelKriteria::count();
         return view('admin.index', compact('title', 'jumlahGuru', 'jumlahKriteria'));
     }
+
+   
 }
