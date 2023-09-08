@@ -26,6 +26,7 @@
                             <th>Guru</th>
                             <th>Hasil</th>
                             <th>Keterangan</th>
+                            <th>Ranking</th>
                         </tr>
                     </thead>
                 </table>

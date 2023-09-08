@@ -24,12 +24,14 @@ class TopsisController extends Controller
 
         $bobotK1 = 5;
         $bobotK2 = 4;
-        $bobotK3 = 3;
-        $bobotK4 = 2;
-        $bobotK5 = 1;
+        $bobotK3 = 5;
+        $bobotK4 = 3;
+        $bobotK5 = 5;
 
         $dataResponden = ModelResponden::all();
+
         $dataGuru = ModelGuru::all();
+        
         // $bobotK1 = 0;
         $totDataK1 = 0;
 
@@ -37,75 +39,10 @@ class TopsisController extends Controller
 
         foreach ($dataGuru as $key => $value) {
 
-                
-
 
             foreach ($dataResponden as $key2 => $value2) {
                 if ($value->id == $value2->guru_id) {
                     $totResGuru = ModelResponden::where('guru_id', $value->id)->count();
-
-                    // $allK1 = ModelResponden::where(function ($query) use ($value) {
-                    //     $query->where('guru_id', $value->id)
-                    //         ->whereHas('getKriteria', function ($query) {
-                    //             $query->where('kode', 'K1');
-                    //         });
-                    // })->get();
-
-                    // $allK2 = ModelResponden::where(function ($query) use ($value) {
-                    //     $query->where('guru_id', $value->id)
-                    //         ->whereHas('getKriteria', function ($query) {
-                    //             $query->where('kode', 'K2');
-                    //         });
-                    // })->get();
-
-                    // $allK3 = ModelResponden::where(function ($query) use ($value) {
-                    //     $query->where('guru_id', $value->id)
-                    //         ->whereHas('getKriteria', function ($query) {
-                    //             $query->where('kode', 'K3');
-                    //         });
-                    // })->get();
-
-                    // $allK4 = ModelResponden::where(function ($query) use ($value) {
-                    //     $query->where('guru_id', $value->id)
-                    //         ->whereHas('getKriteria', function ($query) {
-                    //             $query->where('kode', 'K4');
-                    //         });
-                    // })->get();
-
-                    // $allK5 = ModelResponden::where(function ($query) use ($value) {
-                    //     $query->where('guru_id', $value->id)
-                    //         ->whereHas('getKriteria', function ($query) {
-                    //             $query->where('kode', 'K5');
-                    //         });
-                    // })->get();
-
-                    // $isiK1 = [];
-                    // $isiK2 = [];
-                    // $isiK3 = [];
-                    // $isiK4 = [];
-                    // $isiK5 = [];
-
-                    // foreach ($allK1 as $key3 => $value3) {
-                    //     $isiK1[] = $value3->bobot;
-                    // }
-
-                    // foreach ($allK2 as $key3 => $value3) {
-                    //     $isiK2[] = $value3->bobot;
-                    // }
-
-                    // foreach ($allK3 as $key3 => $value3) {
-                    //     $isiK3[] = $value3->bobot;
-                    // }
-
-                    // foreach ($allK4 as $key3 => $value3) {
-                    //     $isiK4[] = $value3->bobot;
-                    // }
-
-                    // foreach ($allK5 as $key3 => $value3) {
-                    //     $isiK5[] = $value3->bobot;
-                    // }
-
-                    // $dataGuru[$key]['isiK1'] =  $isiK1;
 
                     $totResGuruK1 = ModelResponden::where(function ($query) use ($value) {
                         $query->where('guru_id', $value->id)
@@ -198,11 +135,11 @@ class TopsisController extends Controller
                     $sumK4 = $sumK4 / $totResGuruK4;
                     $sumK5 = $sumK5 / $totResGuruK5;
 
-                    $totK1 = number_format($sumK1, 4, '.', '');
-                    $totK2 = number_format($sumK2, 4, '.', '');
-                    $totK3 = number_format($sumK3, 4, '.', '');
-                    $totK4 = number_format($sumK4, 4, '.', '');
-                    $totK5 = number_format($sumK5, 4, '.', '');
+                    $totK1 = round($sumK1);
+                    $totK2 = round($sumK2);
+                    $totK3 = round($sumK3);
+                    $totK4 = round($sumK4);
+                    $totK5 = round($sumK5);
 
 
                     $dataGuru[$key]['totK1'] =  $totK1;
@@ -210,39 +147,6 @@ class TopsisController extends Controller
                     $dataGuru[$key]['totK3'] = $totK3;
                     $dataGuru[$key]['totK4'] = $totK4;
                     $dataGuru[$key]['totK5'] = $totK5;
-
-
-                    // $dataGuru[$key]['pembagi_matriks_ternormalisasiK1'] = sqrt(???
-
-
-
-
-                    
-                    // $kriteriaId = $value2->getKriteria->kode;
-                    // $dataGuru[$key]['hasil'] = '0,0023';
-                    // $dataGuru[$key]['ket'] = 'Baik';
-                    // switch($kriteriaId){
-                    //     case 'K1':
-                    //         $bobotK1 += $value2->bobot;
-                    //         $dataGuru[$key]['bobotK1'] = $bobotK1;
-                    //         $dataGuru[$key]['totK1'] = $bobotK1/$jmlK1;
-                    //         break;
-                    //     case 'K2':
-                    //         $dataGuru[$key]['totK2'] = $value2->bobot;
-                    //         break;
-                    //     case 'K3':
-                    //         $dataGuru[$key]['totK3'] = $value2->bobot;
-                    //         break;
-                    //     case 'K4':
-                    //         $dataGuru[$key]['totK4'] = $value2->bobot;
-                    //         break;
-                    //     case 'K5':
-                    //         $dataGuru[$key]['totK5'] = $value2->bobot;
-                    //         break;
-
-                    //     }  
-                        
-                    
                 }
 
                 
@@ -268,6 +172,7 @@ class TopsisController extends Controller
         $sumTotK3 = 0;
         $sumTotK4 = 0;
         $sumTotK5 = 0;
+
         foreach ($dataGuru as $key => $value) {
                 $sumTotK1 += pow($value['totK1'], 2);
                 $sumTotK2 += pow($value['totK2'], 2);
@@ -277,28 +182,35 @@ class TopsisController extends Controller
            
         }
         foreach ($dataGuru as $key => $value) {
-            $dataGuru[$key]['pembagi_matriks_ternormalisasiK1'] = number_format(sqrt($sumTotK1), 4, '.', '');
-            $dataGuru[$key]['pembagi_matriks_ternormalisasiK2'] = number_format(sqrt($sumTotK2), 4, '.', '');
-            $dataGuru[$key]['pembagi_matriks_ternormalisasiK3'] = number_format(sqrt($sumTotK3), 4, '.', '');
-            $dataGuru[$key]['pembagi_matriks_ternormalisasiK4'] = number_format(sqrt($sumTotK4), 4, '.', '');
-            $dataGuru[$key]['pembagi_matriks_ternormalisasiK5'] = number_format(sqrt($sumTotK5), 4, '.', '');
+            $dataGuru[$key]['pembagi_matriks_ternormalisasiK1'] = number_format(sqrt($sumTotK1), 2, '.', '');
+            $dataGuru[$key]['pembagi_matriks_ternormalisasiK2'] = number_format(sqrt($sumTotK2), 2, '.', '');
+            $dataGuru[$key]['pembagi_matriks_ternormalisasiK3'] = number_format(sqrt($sumTotK3), 2, '.', '');
+            $dataGuru[$key]['pembagi_matriks_ternormalisasiK4'] = number_format(sqrt($sumTotK4), 2, '.', '');
+            $dataGuru[$key]['pembagi_matriks_ternormalisasiK5'] = number_format(sqrt($sumTotK5), 2, '.', '');
         }
 
         foreach($dataGuru as $key => $value){
-            $dataGuru[$key]['matriks_ternormalisasiK1'] = number_format($value['totK1']/$value['pembagi_matriks_ternormalisasiK1'], 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasiK2'] = number_format($value['totK2']/$value['pembagi_matriks_ternormalisasiK2'], 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasiK3'] = number_format($value['totK3']/$value['pembagi_matriks_ternormalisasiK3'], 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasiK4'] = number_format($value['totK4']/$value['pembagi_matriks_ternormalisasiK4'], 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasiK5'] = number_format($value['totK5']/$value['pembagi_matriks_ternormalisasiK5'], 4, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasiK1'] = number_format($value['totK1']/$value['pembagi_matriks_ternormalisasiK1'], 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasiK2'] = number_format($value['totK2']/$value['pembagi_matriks_ternormalisasiK2'], 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasiK3'] = number_format($value['totK3']/$value['pembagi_matriks_ternormalisasiK3'], 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasiK4'] = number_format($value['totK4']/$value['pembagi_matriks_ternormalisasiK4'], 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasiK5'] = number_format($value['totK5']/$value['pembagi_matriks_ternormalisasiK5'], 2, '.', '');
         }
 
         foreach ($dataGuru as $key => $value) {
-            $dataGuru[$key]['matriks_ternormalisasi_terbobotK1'] = number_format($value['matriks_ternormalisasiK1'] * $bobotK1, 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasi_terbobotK2'] = number_format($value['matriks_ternormalisasiK2'] * $bobotK2, 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasi_terbobotK3'] = number_format($value['matriks_ternormalisasiK3'] * $bobotK3, 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasi_terbobotK4'] = number_format($value['matriks_ternormalisasiK4'] * $bobotK4, 4, '.', '');
-            $dataGuru[$key]['matriks_ternormalisasi_terbobotK5'] = number_format($value['matriks_ternormalisasiK5'] * $bobotK5, 4, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasi_terbobotK1'] = number_format($value['matriks_ternormalisasiK1'] * $bobotK1, 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasi_terbobotK2'] = number_format($value['matriks_ternormalisasiK2'] * $bobotK2, 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasi_terbobotK3'] = number_format($value['matriks_ternormalisasiK3'] * $bobotK3, 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasi_terbobotK4'] = number_format($value['matriks_ternormalisasiK4'] * $bobotK4, 2, '.', '');
+            $dataGuru[$key]['matriks_ternormalisasi_terbobotK5'] = number_format($value['matriks_ternormalisasiK5'] * $bobotK5, 2, '.', '');
         }
+        // pangakas data guru yang tidak memiliki totResGuru
+
+        //filter
+        $dataGuru = $dataGuru->filter(function ($value) {
+            return $value['totK1'] != 0;
+        });
+
 
         //ideal positif dan ideal negatif 
         $dataMatriks_ternormalisasi_terbobotK1 = [];
@@ -315,12 +227,16 @@ class TopsisController extends Controller
             $dataMatriks_ternormalisasi_terbobotK5[] = $value['matriks_ternormalisasi_terbobotK5'];
         }
 
+       
         $idealPositifK1 = max($dataMatriks_ternormalisasi_terbobotK1);
         $idealPositifK2 = max($dataMatriks_ternormalisasi_terbobotK2);
         $idealPositifK3 = max($dataMatriks_ternormalisasi_terbobotK3);
         $idealPositifK4 = max($dataMatriks_ternormalisasi_terbobotK4);
         $idealPositifK5 = max($dataMatriks_ternormalisasi_terbobotK5);
 
+        // return response()->json([
+        //     'data' => $dataMatriks_ternormalisasi_terbobotK1
+        // ]);
         $idealNegatifK1 = min($dataMatriks_ternormalisasi_terbobotK1);
         $idealNegatifK2 = min($dataMatriks_ternormalisasi_terbobotK2);
         $idealNegatifK3 = min($dataMatriks_ternormalisasi_terbobotK3);
@@ -339,52 +255,62 @@ class TopsisController extends Controller
             $dataGuru[$key]['idealNegatifK3'] = $idealNegatifK3;
             $dataGuru[$key]['idealNegatifK4'] = $idealNegatifK4;
             $dataGuru[$key]['idealNegatifK5'] = $idealNegatifK5;
+
+            $dataGuru[$key]['jarakPositif'.$key] = number_format(sqrt(
+                pow(
+                $value['idealPositifK1'] - $value['matriks_ternormalisasi_terbobotK1'], 2
+                ) +
+                pow(
+                    $value['idealPositifK2'] - $value['matriks_ternormalisasi_terbobotK2'], 2
+                ) + 
+                pow(
+                    $value['idealPositifK3'] - $value['matriks_ternormalisasi_terbobotK3'], 2
+                ) + 
+                pow(
+                    $value['idealPositifK4'] - $value['matriks_ternormalisasi_terbobotK4'], 2
+                ) +
+                pow(
+                    $value['idealPositifK5'] - $value['matriks_ternormalisasi_terbobotK5'], 2
+                )) , 2);
+
+            $dataGuru[$key]['jarakNegatif'.$key] = number_format(sqrt(
+                pow(
+                $value['matriks_ternormalisasi_terbobotK1'] - $value['idealNegatifK1'], 2
+                ) + 
+                pow(
+                    $value['matriks_ternormalisasi_terbobotK2'] - $value['idealNegatifK2'], 2
+                ) +
+                pow(
+                    $value['matriks_ternormalisasi_terbobotK3'] - $value['idealNegatifK3'], 2
+                ) +
+                pow(
+                    $value['matriks_ternormalisasi_terbobotK4'] - $value['idealNegatifK4'], 2
+                ) + 
+                pow(
+                    $value['matriks_ternormalisasi_terbobotK5'] - $value['idealNegatifK5'], 2
+                )
+            ), 2);
+
+
         }
 
-        //jarak antara nilai terbobot +-
-        foreach ($dataGuru as $key => $value) {
-            $dataGuru[$key]['jarakPositifK1'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK1'] - $idealPositifK1, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakPositifK2'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK2'] - $idealPositifK2, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakPositifK3'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK3'] - $idealPositifK3, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakPositifK4'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK4'] - $idealPositifK4, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakPositifK5'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK5'] - $idealPositifK5, 2)), 4, '.', '');
 
-            $dataGuru[$key]['jarakNegatifK1'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK1'] - $idealNegatifK1, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakNegatifK2'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK2'] - $idealNegatifK2, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakNegatifK3'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK3'] - $idealNegatifK3, 2)), 4, '.', '');
-            $dataGuru[$key]['jarakNegatifK4'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK4'] - $idealNegatifK4, 2)), 4,
-            '.', '');
-            $dataGuru[$key]['jarakNegatifK5'] = number_format(sqrt(pow($value['matriks_ternormalisasi_terbobotK5'] - $idealNegatifK5, 2)), 4, '.', '');
-        }
-
+        
 
         //nilai preverensi 
         foreach ($dataGuru as $key => $value) {
-            $dataGuru[$key]['nilaiPreferensif'] = number_format(($value['jarakNegatifK1'] / ($value['jarakNegatifK1'] + $value['jarakPositifK1'])), 4, '.', '');
+            $dataGuru[$key]['nilaiPreferensif'] = number_format(($value['jarakNegatif'.$key]/ ($value['jarakPositif'.$key] + $value['jarakNegatif'.$key])), 2);
         }
 
-        //rank dari nilai preferensi
+        // //rank dari nilai preferensi
         $dataNilaiPreferensif = []; 
         foreach ($dataGuru as $key => $value) {
             $dataNilaiPreferensif[] = $value['nilaiPreferensif'];
         }
+        //
 
-        // $rank = [];
-        // $rank = $dataNilaiPreferensif;
-        // rsort($rank);
-        // $rank = array_values(array_unique($rank));
-        // $rank = array_flip($rank);
-        // return response()->json($rank);
-        
-        // foreach ($dataGuru as $key => $value) {
-        //     //jika ada nilai yang sama maka akan di salah satu nilai tersebut akan di tambahkan 1
-        //     $dataGuru[$key]['rank'] = $rank[$value['nilaiPreferensif']] + 1;
-            
-            
-        //     // $dataGuru[$key]['rank'] = $rank[$value['nilaiPreferensif']] + 1;
-        // }
 
-        //ket Sangat Baik, Baik, Cukup, Kurang, Sangat Kurang berdasarkan nilai preferensi
+        // //ket Sangat Baik, Baik, Cukup, Kurang, Sangat Kurang berdasarkan nilai preferensi
         foreach ($dataGuru as $key => $value) {
             if ($value['nilaiPreferensif'] >= 0.8) {
                 $dataGuru[$key]['ket'] = 'Sangat Baik';
@@ -397,9 +323,21 @@ class TopsisController extends Controller
             } else {
                 $dataGuru[$key]['ket'] = 'Sangat Kurang';
             }
-
-            
         }
+
+        //rankingkan sesuai nilai preferensi
+        $rank = [];
+        foreach ($dataGuru as $key => $value) {
+            $rank[] = $value['nilaiPreferensif'];
+        }
+        rsort($rank);
+        $rank = array_values(array_unique($rank));
+        $rank = array_flip($rank);
+        foreach ($dataGuru as $key => $value) {
+            $dataGuru[$key]['rank'] = $rank[$value['nilaiPreferensif']] + 1;
+        }
+        
+       
 
 
         

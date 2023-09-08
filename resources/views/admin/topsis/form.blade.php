@@ -21,6 +21,10 @@
                         data: 'ket',
                         name: 'ket'
                     },
+                    {
+                        data: 'rank',
+                        name: 'rank'
+                    },
 
 
 

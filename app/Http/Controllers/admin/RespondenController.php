@@ -12,7 +12,7 @@ class RespondenController extends Controller
     public function index(Request $request)
     {
         $title  = 'Responden';
-        $data = ModelResponden::all();
+        $data = ModelResponden::with('getGuru', 'getKriteria')->orderBy('id', 'desc')->get();
 
         if ($request->ajax()) {
             return DataTables::of($data)

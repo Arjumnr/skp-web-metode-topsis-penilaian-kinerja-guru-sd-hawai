@@ -10,13 +10,16 @@
                         name: 'DT_RowIndex'
                     },
                     {
-                        data: 'guru_id',
-                        name: 'guru_id'
+                        data: 'get_guru.nama_guru',
+                        name: 'get_guru.nama_guru'
                     },
                     {
                         data: 'kriteria_id',
-                        name: 'kriteria_id'
-                    },
+                        name: 'kriteria_id',
+                        render: function(data, type, row) {
+                            return row.get_kriteria.kode + ' - ' + data; // Ubah "data.kode" menjadi "row.kode"
+                        }
+                    }, 
                     {
                         data: 'bobot',
                         name: 'bobot'
