@@ -60,7 +60,7 @@
             </li>
         @endif
 
-        @if (auth()->user()->role == 'admin' || auth()->user()->role == 'kepsek')
+        @if ( auth()->user()->role == 'kepsek')
             <li class="menu-item @stack('Penilaian')">
                 <a href="{{ route('index') }}" class="menu-link">
                     <i class="menu-icon tf-icons bx  bx-table"></i>
